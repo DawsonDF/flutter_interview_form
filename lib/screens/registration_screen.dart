@@ -200,13 +200,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     // TODO: Build Step 1 form fields
     // Required fields:
     // - Full Name
-    // - Email (with async validation)
+    // - Email
     // - Phone Number
     // - Date of Birth (with age validation)
-    //
-    // Stretch goal:
-    // - Business registration checkbox
-    // - Business name (conditional)
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16),
