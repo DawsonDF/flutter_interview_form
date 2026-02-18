@@ -15,7 +15,11 @@ Focus Areas:
 - Form validation
 - Flutter widget composition
 
-Time Limit: 90 minutes
+Time Limit: 60 minutes
+
+#### NOTE:
+You are NOT being evaluated on completing the
+project. You are being evaluated on code quality, design, and explanation of your thought process.
 
 ## Getting Started
 
