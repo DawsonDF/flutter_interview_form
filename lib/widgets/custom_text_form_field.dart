@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 /// Custom text form field with built-in validation display
-/// 
+///
 /// Features:
 /// - Shows error message below field
 /// - Shows loading indicator during async validation
@@ -20,7 +20,7 @@ class CustomTextFormField extends StatelessWidget {
   final int? maxLength;
   final bool readOnly;
   final TextEditingController? controller;
-  
+
   const CustomTextFormField({
     super.key,
     required this.label,
@@ -82,13 +82,13 @@ class PhoneNumberFormatter extends TextInputFormatter {
     TextEditingValue newValue,
   ) {
     final text = newValue.text.replaceAll(RegExp(r'\D'), '');
-    
+
     if (text.isEmpty) {
       return newValue.copyWith(text: '');
     }
-    
+
     final buffer = StringBuffer();
-    
+
     if (text.length >= 1) {
       buffer.write('(${text.substring(0, text.length.clamp(0, 3))}');
     }
@@ -98,7 +98,7 @@ class PhoneNumberFormatter extends TextInputFormatter {
     if (text.length >= 7) {
       buffer.write('-${text.substring(6, text.length.clamp(6, 10))}');
     }
-    
+
     return newValue.copyWith(
       text: buffer.toString(),
       selection: TextSelection.collapsed(offset: buffer.length),

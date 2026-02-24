@@ -1,14 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Main registration screen with stepper
-///
-/// TODO: Implement the following:
-/// 1. Connect to your state management provider
-/// 2. Implement step navigation logic
-/// 3. Add validation before allowing step progression
-/// 4. Handle form submission
-/// 5. Load saved draft on initialization
-/// 6. Auto-save draft after changes
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
 
@@ -22,34 +13,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   void initState() {
     super.initState();
-    _loadDraft();
-  }
-
-  Future<void> _loadDraft() async {
-    // TODO: Implement draft loading using PersistenceService
-    //
-    // Example implementation pattern:
-    // 1. final persistenceService = PersistenceService();
-    // 2. await persistenceService.initialize();
-    // 3. Check if persistenceService.hasSavedDraft()
-    // 4. If true, load: await persistenceService.loadFormData()
-    // 5. Load step: await persistenceService.loadCurrentStep()
-    // 6. Restore form fields with loaded data
-    // 7. Call setState() to update UI
-    //
-    // Optional: Show a dialog asking if user wants to resume
   }
 
   void _onStepContinue() {
-    // TODO: Implement step validation and auto-save
-    // 1. Validate current step form fields
-    // 2. If valid, increment step
-    // 3. Save form data to SharedPreferences using PersistenceService:
-    //    final persistenceService = PersistenceService();
-    //    await persistenceService.initialize();
-    //    await persistenceService.saveFormData({...formData...});
-    //    await persistenceService.saveCurrentStep(_currentStep);
-
     if (_currentStep < 2) {
       setState(() {
         _currentStep++;
@@ -66,24 +32,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   void _onStepTapped(int step) {
-    // TODO: Implement smart navigation
-    // Only allow jumping to completed steps
-    // Prevent jumping ahead to incomplete steps
-
     setState(() {
       _currentStep = step;
     });
   }
 
   Future<void> _submitForm() async {
-    // TODO: Implement form submission with persistence cleanup
-    // 1. Final validation of all steps
-    // 2. Send data to backend/database
-    // 3. Clear saved draft from SharedPreferences:
-    //    await _persistenceService.clearFormData();
-    // 4. Show success message
-    // 5. Reset form state and navigation
-
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -93,9 +47,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           TextButton(
             onPressed: () async {
               Navigator.of(context).pop();
-              // TODO: Clear saved draft after successful submission
-              // await _persistenceService.clearFormData();
-              // TODO: Reset form state
               setState(() {
                 _currentStep = 0;
               });
@@ -185,11 +136,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   StepState _getStepState(int step) {
-    // TODO: Implement proper step state logic
-    // Return StepState.complete for completed steps
-    // Return StepState.error for steps with validation errors
-    // Return StepState.indexed for other steps
-
     if (step < _currentStep) {
       return StepState.complete;
     }
@@ -197,13 +143,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   Widget _buildPersonalInfoStep() {
-    // TODO: Build Step 1 form fields
-    // Required fields:
-    // - Full Name
-    // - Email
-    // - Phone Number
-    // - Date of Birth (with age validation)
-
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Column(
@@ -214,34 +153,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             style: TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 24),
-
-          // TODO: Add form fields here
-          // Example structure:
           TextFormField(
             decoration: const InputDecoration(
               labelText: 'Full Name',
               hintText: 'Enter your full name',
             ),
-            // TODO: Connect to your state management
-            // TODO: Add validation
           ),
           const SizedBox(height: 16),
-
-          // TODO: Add more fields...
         ],
       ),
     );
   }
 
   Widget _buildAddressStep() {
-    // TODO: Build Step 2 form fields
-    // Required fields:
-    // - Street Address
-    // - City (auto-populated from ZIP)
-    // - State (dropdown, auto-populated from ZIP)
-    // - ZIP Code (with async validation)
-    // - Country (read-only: "United States")
-
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Column(
@@ -252,19 +176,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             style: TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 24),
-
-          // TODO: Add form fields here
         ],
       ),
     );
   }
 
   Widget _buildReviewStep() {
-    // TODO: Build Step 3 review screen
-    // Display all collected information
-    // Add "Edit" buttons to go back to specific steps
-    // Show submit button (handled in controlsBuilder)
-
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Column(
@@ -275,13 +192,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 24),
-
-          // TODO: Display form data in read-only format
-          // Example:
           _buildReviewSection(
             title: 'Personal Information',
             items: [
-              // TODO: Pull from your state management
               {'label': 'Full Name', 'value': '[Your Name]'},
               {'label': 'Email', 'value': '[Your Email]'},
               {'label': 'Phone', 'value': '[Your Phone]'},
@@ -290,7 +203,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             onEdit: () => setState(() => _currentStep = 0),
           ),
           const SizedBox(height: 16),
-
           _buildReviewSection(
             title: 'Address',
             items: [

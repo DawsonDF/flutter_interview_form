@@ -2,8 +2,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PersistenceService {
-  static const String _formDataKey = 'form_draft_data';
-  static const String _currentStepKey = 'form_current_step';
+  static const String _formDataKey = 'form_data';
 
   late SharedPreferences _prefs;
   bool _initialized = false;
@@ -37,41 +36,13 @@ class PersistenceService {
     }
   }
 
-  Future<bool> saveCurrentStep(int step) async {
-    try {
-      return await _prefs.setInt(_currentStepKey, step);
-    } catch (e) {
-      print('Error saving current step: $e');
-      return false;
-    }
-  }
-
-  Future<int> loadCurrentStep() async {
-    try {
-      return _prefs.getInt(_currentStepKey) ?? 0;
-    } catch (e) {
-      print('Error loading current step: $e');
-      return 0;
-    }
-  }
-
   Future<bool> clearFormData() async {
     try {
       await _prefs.remove(_formDataKey);
-      await _prefs.remove(_currentStepKey);
       return true;
     } catch (e) {
       print('Error clearing form data: $e');
       return false;
     }
-  }
-
-  bool hasSavedDraft() {
-    return _prefs.containsKey(_formDataKey);
-  }
-
-  DateTime? getLastSavedTime() {
-    // TODO: Implement timestamp tracking
-    return null;
   }
 }
