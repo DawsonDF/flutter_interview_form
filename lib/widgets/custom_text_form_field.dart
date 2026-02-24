@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// Custom text form field with built-in validation display
-///
-/// Features:
-/// - Shows error message below field
-/// - Shows loading indicator during async validation
-/// - Customizable input formatters and keyboard type
 class CustomTextFormField extends StatelessWidget {
   final String label;
   final String? hintText;
